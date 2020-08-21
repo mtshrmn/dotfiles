@@ -1,0 +1,240 @@
+#  _ _____
+# (_)___ /_      ___ __ ___
+# | | |_ \ \ /\ / / '_ ` _ \
+# | |___) \ V  V /| | | | | |
+# |_|____/ \_/\_/ |_| |_| |_|
+# suerflowz minimal i3wm rice
+
+
+set $mod Mod4
+font pango:San Francisco Display 11
+smart_borders on
+gaps inner 15
+gaps outer 525
+gaps vertical 30
+smart_gaps inverse_outer 
+for_window [class="^.*"] border pixel 0
+focus_follows_mouse no
+
+# each time opening a new window run this script to create an ultrawide split
+#for_window [class=".*"] exec --no-startup-id "echo 'hi' >> ~/test.txt"
+
+# use $mod to be a normie in floating mode.
+floating_modifier $mod
+
+# workspace matching
+assign [class="Chromium"] 1
+# unless i do this, atom will be sent to workspace 2 in a parallel universe
+for_window [class="Atom"] move to workspace 2
+for_window [class="Spotify"] move to workspace 3
+for_window [title="ncspot" class="Gnome-terminal"] move to workspace 3
+assign [class="discord"] 5
+assign [class="deluge"] 6
+assign [class="vlc"] 6
+assign [class="Steam"] 7
+
+# floating windows
+for_window [class="xmessage"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [class="rtv-feh"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+for_window [title="Friends List"] floating enable
+for_window [class="Pavucontrol"] floating enable
+
+
+# bindings ---------------------------------------------
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+t mode "transform"
+bindsym $mod+g mode "gaps"
+
+mode "resize" {
+        # grow/shrink window by 10 px or ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # bind same as above but with control as half size
+        bindsym Shift+h resize shrink width 5 px or 5 ppt
+        bindsym Shift+j resize grow height 5 px or 5 ppt
+        bindsym Shift+k resize shrink height 5 px or 5 ppt
+        bindsym Shift+l resize grow width 5 px or 5 ppt
+        
+        # bind same as above but with control as half size
+        bindsym Control+h resize shrink width 1 px 
+        bindsym Control+j resize grow height 1 px 
+        bindsym Control+k resize shrink height 1 px 
+        bindsym Control+l resize grow width 1 px 
+
+        bindsym $mod+r resize set width 927 px; mode "default"
+        bindsym $mod+d resize set width 50 ppt; mode "default"
+
+        # to change the split modes you must enter the resize mode first.
+        bindsym $mod+h split h; mode "default"
+        bindsym $mod+v split v; mode "default"
+        bindsym $mod+s layout stacking; mode "default"
+        bindsym $mod+w layout tabbed; mode "default"
+        
+        # move focused window
+        bindsym $mod+Shift+h move left
+        bindsym $mod+Shift+j move down
+        bindsym $mod+Shift+k move up
+        bindsym $mod+Shift+l move right
+
+        bindsym $mod+e layout toggle split; mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# move workspace to different outputs (hjkl)
+# mode "transform" {
+#    bindsym h move workspace to output left; mode "default"
+#    bindsym j move workspace to output down; mode "default"
+#    bindsym k move workspace to output up; mode "default"
+#    bindsym l move workspace to output right; mode "default"
+#    bindsym t exec --no-startup-id ~/scripts/switch-monitor.sh; mode "default"
+#    bindsym s sticky toggle; mode "default"
+#
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+# }
+
+# control the gaps
+mode "gaps" {
+    # default gaps configuration
+    bindsym $mod+d gaps outer all set 525; gaps vertical all set 30; mode "defaul"
+    # set both outer gapps to 30
+    bindsym $mod+h gaps horizontal all set 30; mode "default" 
+    # remove outer gaps
+    bindsym $mod+o gaps outer all set 0; mode "default"
+    # slim mode - increase horizontal gaps.
+    bindsym $mod+s gaps horizontal all set 800; mode "default"
+    
+    # toggle default and no gaps
+    bindsym $mod+g gaps horizontal all toggle 525; gaps vertical all toggle 30; mode "default"
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# 10 simple workspaces corresponding to the numbers
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+t exec --no-startup-id ~/.config/i3/scripts/switch-languages.sh
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+#custom focus script
+bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/focus.py
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent-child container
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+# set lock screen shortcut
+bindsym $mod+Control+l exec --no-startup-id ./.config/i3/scriptslock
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Return exec --no-startup-id gnome-terminal
+#bindsym $mod+Return exec --no-startup-id st
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec --no-startup-id "rofi -show run -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
+
+# media controls:
+bindcode Shift+117 exec --no-startup-id "playerctl --player=ncspot,spotify next"
+bindcode Shift+112 exec --no-startup-id "playerctl --player=ncspot,spotify previous"
+bindcode Shift+115 exec --no-startup-id "playerctl --player=ncspot,spotify play-pause"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 7%-"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 7%+"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 2%-"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 2%+"
+
+#brightness controls:
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
+
+bindsym --release Print exec --no-startup-id "./.config/i3/scripts/snippet-tool"
+bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
+
+
+# Colors --------------------------------------------------------------
+
+set $bg-color 	          #282828
+set $inactive-bg-color   #202020
+set $text-color          #d6d6d6
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $border-focus	       #666666
+
+client.focused          $border-focus           $border-focus           $text-color             $bg-color
+client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $bg-color
+client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $bg-color
+client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $bg-color
+
+# Daemons and such ----------------------------------------------------------------
+exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
+exec --no-startup-id dunst
+exec --no-startup-id unclutter 
+#exec --no-startup-id spotpris2 -> fuck u spotify
+
+exec_always --no-startup-id ./.config/i3/scripts/picom_startup
+exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
+exec_always --no-startup-id feh --bg-fill pictures/wallpapers/eytan-zana-demo-4.png
