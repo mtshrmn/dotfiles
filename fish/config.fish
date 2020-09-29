@@ -5,6 +5,15 @@ if status is-login
     end
 end
 
+# the sudo !! of bash
+function sudo --description "Replacement for Bash 'sudo !!' command to run last command using sudo."
+    if test "$argv" = !!
+    eval command sudo $history[1]
+else
+    command sudo $argv
+    end
+end
+
 set SPACEFISH_PROMPT_ADD_NEWLINE false
 set SPACEFISH_USER_SHOW always
 set SPACEFISH_DIR_PERFIX ""
@@ -17,6 +26,16 @@ source .profile
 
 alias ls "lsd"
 alias cat "bat -p --paging=never"
-alias rtv "tuir"
+alias rtv 'tuir'
 alias vlc "i3-swallow vlc"
+alias zathura "i3-swallow zathura"
 alias xclip "xclip -selection clipboard"
+alias rtv "tuir"
+
+function horrible-downloader --description "horrible-downloader wrapper to delete log on successful job"
+    /home/suerflowz/.local/bin/horrible-downloader $argv
+    if test $status -eq 0
+        rm horribledownloader.log
+    end
+end
+

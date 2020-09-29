@@ -27,7 +27,7 @@ assign [class="Chromium"] 1
 # unless i do this, atom will be sent to workspace 2 in a parallel universe
 for_window [class="Atom"] move to workspace 2
 for_window [class="Spotify"] move to workspace 3
-for_window [title="ncspot" class="Gnome-terminal"] move to workspace 3
+for_window [title="^ncspot$" class="Alacritty"] move to workspace 3
 assign [class="discord"] 5
 assign [class="deluge"] 6
 assign [class="vlc"] 6
@@ -40,6 +40,7 @@ for_window [class="rtv-feh"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
 for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^(?!Steam).*$"] floating enable
 for_window [class="^Steam$" title="^Settings$"] floating enable
 for_window [class="^Steam$" title=".* - event started"] floating enable
 for_window [class="^Steam$" title=".* CD key"] floating enable
@@ -49,7 +50,8 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [class="Pavucontrol"] floating enable
-
+# make pavucontrol sticky
+for_window [class="Pavucontrol"] sticky enable
 
 # bindings ---------------------------------------------
 bindsym $mod+r mode "resize"
@@ -76,6 +78,7 @@ mode "resize" {
         bindsym Control+l resize grow width 1 px 
 
         bindsym $mod+r resize set width 927 px; mode "default"
+        bindsym $mod+Shift+r resize set width 2471 px; mode "default"
         bindsym $mod+d resize set width 50 ppt; mode "default"
 
         # to change the split modes you must enter the resize mode first.
@@ -122,7 +125,7 @@ mode "gaps" {
     bindsym $mod+s gaps horizontal all set 800; mode "default"
     
     # toggle default and no gaps
-    bindsym $mod+g gaps horizontal all toggle 525; gaps vertical all toggle 30; mode "default"
+    bindsym $mod+g gaps horizontal current toggle 525; gaps vertical current toggle 30; mode "default"
     
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -179,7 +182,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # set lock screen shortcut
-bindsym $mod+Control+l exec --no-startup-id ./.config/i3/scriptslock
+bindsym $mod+Control+l exec --no-startup-id ./.config/i3/scripts/lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -187,7 +190,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Return exec --no-startup-id gnome-terminal
+bindsym $mod+Return exec --no-startup-id alacritty
 #bindsym $mod+Return exec --no-startup-id st
 
 # kill focused window
@@ -211,7 +214,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
 
-bindsym --release Print exec --no-startup-id "./.config/i3/scripts/snippet-tool"
+bindsym --release Print exec --no-startup-id imgur-screenshot
 bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
 
 
@@ -230,11 +233,13 @@ client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactiv
 client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $bg-color
 
 # Daemons and such ----------------------------------------------------------------
-exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
 exec --no-startup-id dunst
+#exec --no-startup-id deadd-notification-center
 exec --no-startup-id unclutter 
+exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 
+exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
 exec_always --no-startup-id ./.config/i3/scripts/picom_startup
 exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
 exec_always --no-startup-id feh --bg-fill pictures/wallpapers/eytan-zana-demo-4.png
