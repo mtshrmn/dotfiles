@@ -1,0 +1,20 @@
+use_nerdfont = true
+notify = true
+
+[saved_state]
+volume = 70
+repeat = "playlist"
+
+[theme]
+primary = "light white"
+title = "green"
+playing = "green"
+playing_selected = "light green"
+highlight = "light white"
+highlight_bg = "#484848"
+error = "light white"
+error_bg = "red"
+statusbar_progress = "green"
+statusbar_bg = "green"
+cmdline = "green"
+

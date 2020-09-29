@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+#except:
+!.gitignore
+!/alacritty/
+!/alacritty/*
+!/BetterDiscord/
+!/BetterDiscord/*
+!/dunst/
+!/dunst/*
+!/fish/
+!/fish/*
+!/i3/
+!/i3/*
+!/ncspot/
+!/ncspot/config.toml
+!/picom/
+!/picom/*
+!/polybar/
+!/polybar/*
