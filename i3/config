@@ -29,6 +29,7 @@ for_window [class="Atom"] move to workspace 2
 for_window [class="Spotify"] move to workspace 3
 for_window [title="^ncspot$" class="Alacritty"] move to workspace 3
 assign [class="discord"] 5
+assign [class="zoom"] 5
 assign [class="deluge"] 6
 assign [class="vlc"] 6
 assign [class="Steam"] 7
@@ -49,9 +50,10 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 for_window [title="Friends List"] floating enable
+# pavucontrol sticky on top right of screen.
 for_window [class="Pavucontrol"] floating enable
-# make pavucontrol sticky
 for_window [class="Pavucontrol"] sticky enable
+for_window [class="Pavucontrol"] move position 2630 35
 
 # bindings ---------------------------------------------
 bindsym $mod+r mode "resize"
@@ -195,6 +197,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym --release $mod+Control+Shift+q exec --no-startup-id xkill
 
 bindsym $mod+d exec --no-startup-id "rofi -show run -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun

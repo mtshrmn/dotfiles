@@ -1,4 +1,4 @@
 #!/bin/sh
 # programs that should launch at startup (not to be confused with system ui and daemons)
 
-discord &
+# discord &

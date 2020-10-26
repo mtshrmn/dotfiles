@@ -31,6 +31,9 @@ alias vlc "i3-swallow vlc"
 alias zathura "i3-swallow zathura"
 alias xclip "xclip -selection clipboard"
 alias rtv "tuir"
+alias screen-record "ffmpeg -framerate 30 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i default"
+alias region-record "ffcast -s ffmpeg -f x11grab -s %s -i %D+%c"
+alias simplehttpserver "browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
 
 function horrible-downloader --description "horrible-downloader wrapper to delete log on successful job"
     /home/suerflowz/.local/bin/horrible-downloader $argv

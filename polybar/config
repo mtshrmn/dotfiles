@@ -290,7 +290,7 @@ format-foreground = ${colors.white}
 format-padding = 1
 
 [module/volume]
-type = internal/alsa
+type = internal/pulseaudio
 format-volume = %{A2:pavucontrol &:} <bar-volume> %{A}
 
 label-volume = VOL
@@ -418,7 +418,7 @@ menu-2-1-exec = menu-open-0
 
 [module/spotify]
 type = custom/script
-exec = ~/.config/polybar/spotify.sh
+exec = ~/.config/polybar/music.sh
 tail = true
 interval = 1
 

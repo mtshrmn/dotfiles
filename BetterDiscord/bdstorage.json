@@ -38,15 +38,15 @@
             "plugins": {
                 "EditChannels": true,
                 "BDFDB": true,
-                "BetterFriendList": true,
-                "CompleteTimestamps": false,
-                "CustomQuoter": true,
+                "BetterFriendList": false,
+                "CompleteTimestamps": true,
+                "CustomQuoter": false,
                 "DisplayServersAsChannels": false,
-                "ImageUtilities": true,
-                "PersonalPins": true,
+                "ImageUtilities": false,
+                "PersonalPins": false,
                 "PinDMs": true,
-                "ServerDetails": true,
-                "SpellCheck": true
+                "ServerDetails": false,
+                "SpellCheck": false
             },
             "themes": {
                 "BlurpleRecolor": true
@@ -57,7 +57,7 @@
     },
     "version": "0.3.5",
     "emoteCacheDays": 7,
-    "emoteCacheDate": "2020-09-27T09:27:24.870Z",
-    "bdcustomcss": "I2JkLXB1Yi1saSB7CiAgICBkaXNwbGF5OiBub25lOwp9",
+    "emoteCacheDate": "2020-10-21T15:19:06.690Z",
+    "bdcustomcss": "I2JkLXB1Yi1saSB7CiAgICBkaXNwbGF5OiBub25lOwp9CgoudHlwZVdpbmRvd3MtMXphLW43LndpdGhGcmFtZS1oYVlsdEkudGl0bGVCYXItQUM0cEdWLmhvcml6b250YWxSZXZlcnNlLTN0UmpZNy5mbGV4LTFPMUdLWS5kaXJlY3Rpb25Sb3dSZXZlcnNlLW04SWpJcS5qdXN0aWZ5U3RhcnQtMk5ERnppLmFsaWduU3RyZXRjaC1EcEdQZjMuZGEtdHlwZVdpbmRvd3MuZGEtd2l0aEZyYW1lLmRhLXRpdGxlQmFyLmRhLWhvcml6b250YWxSZXZlcnNlLmRhLWZsZXguZGEtZGlyZWN0aW9uUm93UmV2ZXJzZS5kYS1qdXN0aWZ5U3RhcnQuZGEtYWxpZ25TdHJldGNoIHsKICAgICAgICBkaXNwbGF5OiBub25lOwp9",
     "bdfavemotes": "e30="
 }
