@@ -11,6 +11,8 @@
 !/dunst/*
 !/fish/
 !/fish/*
+!/fontconfig/
+!/fontconfig/*
 !/i3/
 !/i3/*
 !/ncspot/
