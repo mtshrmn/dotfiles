@@ -58,7 +58,7 @@ underline-color = ${colors.white}
 ;   left
 ;   center
 ;   right
-tray-position = right
+tray-position = undefined 
 
 ; If true, the bar will not shift its
 ; contents when the tray changes
@@ -109,6 +109,7 @@ font-1 = Font Awesome 5 Pro Regular:size=10;0
 font-2 = Noto Sans Hebrew:size=10;0
 font-3 = Noto Sans CJK JP:size=10;0
 font-4 = FontAwesome:size=10;0
+font-5 = Noto Color Emoji:scale=13
 
 [module/xwindow]
 type = internal/xwindow

@@ -32,13 +32,17 @@ assign [class="discord"] 5
 assign [class="zoom"] 5
 assign [class="deluge"] 6
 assign [class="vlc"] 6
+assign [instance="mpv-anime"] 6
 assign [class="Steam"] 7
+assign [class="battle.net.exe"] 7
+assign [class="overwatch.exe"] 7
 
 # floating windows
 for_window [class="xmessage"] floating enable
 for_window [window_role="pop-up"] floating enable
-for_window [class="rtv-feh"] floating enable
-for_window [class="mpv"] floating enable
+for_window [class="float"] floating enable
+for_window [instance="mpv-rtv"] floating enable
+for_window [class="imv"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
 for_window [class="^Steam$" title=".* - Chat"] floating enable
 for_window [class="^Steam$" title="^(?!Steam).*$"] floating enable
@@ -50,10 +54,12 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 for_window [title="Friends List"] floating enable
+for_window [title="Among Us"] floating disable
 # pavucontrol sticky on top right of screen.
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Pavucontrol"] sticky enable
 for_window [class="Pavucontrol"] move position 2630 35
+for_window [title="pulsemixer_float"] floating enable
 
 # bindings ---------------------------------------------
 bindsym $mod+r mode "resize"
@@ -118,13 +124,13 @@ mode "resize" {
 # control the gaps
 mode "gaps" {
     # default gaps configuration
-    bindsym $mod+d gaps outer all set 525; gaps vertical all set 30; mode "defaul"
+    bindsym $mod+d gaps outer current set 525; gaps vertical current set 30; mode "default"
     # set both outer gapps to 30
-    bindsym $mod+h gaps horizontal all set 30; mode "default" 
+    bindsym $mod+h gaps horizontal current set 30; mode "default" 
     # remove outer gaps
-    bindsym $mod+o gaps outer all set 0; mode "default"
+    bindsym $mod+o gaps outer current set 0; mode "default"
     # slim mode - increase horizontal gaps.
-    bindsym $mod+s gaps horizontal all set 800; mode "default"
+    bindsym $mod+s gaps horizontal current set 800; mode "default"
     
     # toggle default and no gaps
     bindsym $mod+g gaps horizontal current toggle 525; gaps vertical current toggle 30; mode "default"
@@ -203,9 +209,9 @@ bindsym $mod+d exec --no-startup-id "rofi -show run -run-shell-command '{termina
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 
 # media controls:
-bindcode Shift+117 exec --no-startup-id "playerctl --player=ncspot,spotify next"
-bindcode Shift+112 exec --no-startup-id "playerctl --player=ncspot,spotify previous"
-bindcode Shift+115 exec --no-startup-id "playerctl --player=ncspot,spotify play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl --player=ncspot,spotify next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=ncspot,spotify previous"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=ncspot,spotify play-pause"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 7%-"
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 7%+"
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 2%-"
@@ -219,6 +225,9 @@ bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
 
 bindsym --release Print exec --no-startup-id imgur-screenshot
 bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
+
+# latex binding (todo: find a nice place for it)
+bindsym $mod+Shift+U exec --no-startup-id "./scripts/system/unicodeit"
 
 
 # Colors --------------------------------------------------------------
@@ -243,6 +252,8 @@ exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 
 exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
+exec_always --no-startup-id xscreensaver -no-splash
 exec_always --no-startup-id ./.config/i3/scripts/picom_startup
+exec_always --no-startup-id watch -n 50 .config/i3/scripts/screensaver_deactivate_manager
 exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
 exec_always --no-startup-id feh --bg-fill pictures/wallpapers/eytan-zana-demo-4.png

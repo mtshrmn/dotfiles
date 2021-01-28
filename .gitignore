@@ -21,3 +21,5 @@
 !/picom/*
 !/polybar/
 !/polybar/*
+!/nvim/
+!/nvim/*
