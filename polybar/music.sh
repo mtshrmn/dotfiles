@@ -3,7 +3,7 @@
 # order of display:
 # ncsopt
 # spotify
-# chromium
+# qutebrowser
 # vlc
 
 if [ "$(playerctl status --player=ncspot 2> /dev/null)" = "Playing" ]; then
@@ -14,9 +14,9 @@ elif [ "$(playerctl status --player=spotify 2> /dev/null)" = "Playing" ]; then
     artist=$(playerctl metadata artist --player=spotify)
     title=$(playerctl metadata title --player=spotify)
     echo "$artist - $title" | fribidi /dev/stdin 
-elif [ "$(playerctl status --player=chromium 2> /dev/null)" = "Playing" ]; then
-    title=$(playerctl metadata title --player=chromium)
-    artist=$(playerctl metadata artist --player=chromium)
+elif [ "$(playerctl status --player=qutebrowser 2> /dev/null)" = "Playing" ]; then
+    title=$(playerctl metadata title --player=qutebrowser)
+    artist=$(playerctl metadata artist --player=qutebrowser)
     if [[ $artist = "" ]]; then
         echo "$title" | fribidi /dev/stdin
     else

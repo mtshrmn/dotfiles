@@ -16,20 +16,20 @@ Plug 'preservim/nerdtree' |
 Plug 'mattn/emmet-vim'
 Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
-"Plugin 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jaxbot/semantic-highlight.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'gko/vim-coloresque'
 Plug 'cespare/vim-toml'
-Plug 'xi/limelight.vim', { 'branch': 'feature-movement'}
-Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lervag/vimtex'
 Plug 'tomtom/tcomment_vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'vimlab/split-term.vim'
+Plug 'wesQ3/vim-windowswap'
+Plug 'lervag/vimtex'
+Plug 'dkarter/bullets.vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 " All of your Plugins must be added before the following line
@@ -64,26 +64,30 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && getcwd() != "/home/suerflowz" | NERDTree | endif
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:ycm_global_ycm_extra_conf = '/home/dramm/.vim/bundle/youcompleteme/.ycm_extra_conf.py'
-let g:ycm_keep_logfiles = 1
-let g:ycm_log_level = 'debug'
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_conceal_guifg = '#777777'
 let g:airline_theme='minimalist'
 
-let g:limelight_mode = 'movement'
-let g:limelight_bop = '[]'
-let g:limelight_eop = ']['
-autocmd VimEnter * Limelight
-let g:limelight_priority = -1
+" Bullets.vim
+let g:bullets_enabled_file_types = [
+    \ 'text',
+    \ 'scratch'
+    \]
+
 command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
 command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> - |fmt -csw78
 " let terminal resize scale the internal windows
-autocmd VimResized * :wincmd =
+" autocmd VimResized * :wincmd =
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
+\   "function": "\uf661 ",
+\   "variable": "\uf031 ",
+\   "implementation": "\uf013 ",
+\   "struct": "\uf7ea ",
+\   "method": "\uf1b2 ",
+\   "field": "\uf337 ",
+\   "enum": "\uf5c3 ",
+\   "enumerator": "\uf061 ",
+\   "typedef": "\uf53f ",
 \  }
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -115,3 +119,13 @@ augroup terminal_settings
           \   call nvim_input('<CR>')  |
           \ endif
   augroup END
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gr <Plug>(coc-references)
+nmap <leader>tt :NERDTreeFocus<CR>
+nnoremap <C-p> :Vista finder coc<CR>
+
+autocmd InsertEnter * let @/=""
+command! CargoPlay !cargo play %

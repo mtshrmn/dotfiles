@@ -223,6 +223,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
 
+# custon bindings
 bindsym --release Print exec --no-startup-id imgur-screenshot
 bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
 
@@ -248,6 +249,8 @@ client.urgent           $urgent-bg-color        $urgent-bg-color        $text-co
 exec --no-startup-id dunst
 #exec --no-startup-id deadd-notification-center
 exec --no-startup-id unclutter 
+exec --no-startup-id udiskie
+exec --no-startup-id python ~/scripts/system/autotiling.py
 exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 

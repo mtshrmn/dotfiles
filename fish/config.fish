@@ -22,6 +22,7 @@ set SPACEFISH_HOST_SHOW_FULL true
 set -x VISUAL "nvim"
 set -x EDITOR "nvim"
 set -x TUIR_EDITOR "nvim"
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 source .profile
 
 alias vim "nvim"
