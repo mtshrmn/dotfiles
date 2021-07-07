@@ -26,7 +26,7 @@ with pulsectl.Pulse("sink handler") as pulse:
             pulse.sink_input_move(sink.index, monitor_sink.index)
             continue
 
-        output_sink = game_sink if game else chat_sink
+        output_sink = game_sink if id_str in game else chat_sink
         try:
             pulse.sink_input_move(sink.index, output_sink.index)
         except pulsectl.pulsectl.PulseOperationFailed:
