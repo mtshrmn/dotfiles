@@ -56,9 +56,9 @@ for_window [title="^Steam Keyboard$"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [title="Among Us"] floating disable
 # pavucontrol sticky on top right of screen.
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Pavucontrol"] sticky enable
-for_window [class="Pavucontrol"] move position 2630 35
+for_window [title="pulsemixer_polybar"] floating enable
+for_window [title="pulsemixer_polybar"] sticky enable
+for_window [title="pulsemixer_polybar"] move position 2630 35
 for_window [title="pulsemixer_float"] floating enable
 
 # bindings ---------------------------------------------
@@ -207,6 +207,7 @@ bindsym --release $mod+Control+Shift+q exec --no-startup-id xkill
 
 bindsym $mod+d exec --no-startup-id "rofi -show run -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
+bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # media controls:
 bindsym XF86AudioNext exec --no-startup-id "playerctl --player=ncspot,spotify next"
@@ -250,13 +251,14 @@ exec --no-startup-id dunst
 #exec --no-startup-id deadd-notification-center
 exec --no-startup-id unclutter 
 exec --no-startup-id udiskie
-exec --no-startup-id python ~/scripts/system/autotiling.py
 exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 
 exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
+exec_always --no-startup-id python ~/scripts/system/autotiling.py
+exec_always --no-startup-id systemctl --user start pbnotify
 exec_always --no-startup-id xscreensaver -no-splash
 exec_always --no-startup-id ./.config/i3/scripts/picom_startup
-exec_always --no-startup-id watch -n 50 .config/i3/scripts/screensaver_deactivate_manager
+exec_always --no-startup-id systemctl --user start screen_deactivator
 exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
-exec_always --no-startup-id feh --bg-fill pictures/wallpapers/eytan-zana-demo-4.png
+exec_always --no-startup-id feh --bg-fill pictures/reddit_sub_WidescreenWallpaper/n7rx77-Shishkin_Ivan._Morning_in_a_pine_forest__1889____5160___2160-ppgpb4893xx61.png

@@ -1,3 +1,4 @@
+; vim:set ft=dosini:
 ;              _       _                
 ;             | |     | |               
 ;  _ __   ___ | |_   _| |__   __ _ _ __ 
@@ -39,11 +40,11 @@ module-margin-right = 1
 module-margin-left = 0
 
 ; Modules to display on the bar
-modules-right = volume dunst 
+modules-right = volume audio_output dunst 
 modules-center = date
 modules-left = i3 spotify
 
-background = #66090909
+background = #77090909
 foreground = ${colors.white}
 
 underline-size = 2
@@ -111,27 +112,6 @@ font-3 = Noto Sans CJK JP:size=10;0
 font-4 = FontAwesome:size=10;0
 font-5 = Noto Color Emoji:scale=13
 
-[module/xwindow]
-type = internal/xwindow
-label = %title%
-label-maxlen = 40
-
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-mount-1 = /home
-;mount-2 = /invalid/mountpoint
-
-label-mounted =  %free%
-label-mounted-underline = ${colors.white}
-label-mounted-padding = 1
-
-label-unmounted =
-label-unmounted-foreground = ${colors.black}
-
 [module/i3]
 type = internal/i3
 format = <label-mode> <label-state>
@@ -168,119 +148,6 @@ label-visible-foreground = ${colors.white}
 label-visible-underline = ${colors.gray}
 label-visible-padding = 4
 
-[module/mpd]
-type = internal/mpd
-
-host = 127.0.0.1
-port = 4200
-
-intervel = 2
-
-format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
-format-offline = <label-offline>
-
-label-offline = %{F${colors.white}  no music %{F-}
-label-offline-foreground = ${colors.gray}
-
-label-song = %{F${colors.white} %artist% - %title% %{F-}
-label-song-maxlen = 95
-label-song-ellipsis = true
-
-icon-prev = 
-icon-seekb = <<
-icon-stop = o
-icon-pause = 
-icon-play = 
-icon-next = 
-icon-seekf = >>
-
-icon-random = S
-icon-repeat = R
-
-toggle-on-foreground = #e60053
-toggle-off-foreground = #66
-
-[module/backlight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = │
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = #55
-
-[module/cpu]
-format-label = internal/cpu
-
-format = <label>
-
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
-ramp-coreload-underline = ${colors.white}
-
-type = internal/cpu
-interval = 6
-label = %{F${colors.white} CPU %percentage% %{F-}
-label-underline = ${colors.white}
-padding = 2
-
-[module/memory]
-type = internal/memory
-interval = 6
-
-label = %{F${colors.white} Memory %percentage_used% %{F-}
-label-underline = ${colors.white}
-label-foreground = ${colors.white}
-
-[module/wlan]
-type = internal/network
-interface = wlp8s0
-
-format-connected-padding = 1
-format-disconnected-padding = 1
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
-
-label-connected = %essid%
-label-disconnected = 
-;label-disconnected-foreground = ${colors.gray}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-
-
-[module/eth]
-type = internal/network
-interface = enp9s0
-
-format-connected-padding = 1
-format-disconnected-padding = 1
-
-format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
-
-label-connected =  
-label-disconnected = 
-label-disconnected-foreground = ${colors.gray}
-
 [module/date]
 type = internal/date
 date-alt =   %A %H:%M 
@@ -290,14 +157,21 @@ format-underline = ${colors.white}
 format-foreground = ${colors.white}
 format-padding = 1
 
+[module/audio_output]
+type = custom/script
+exec = /home/suerflowz/.config/polybar/sound.sh
+tail=true
+click-left= kill -USR1 %pid%
+
 [module/volume]
 type = internal/pulseaudio
-format-volume = %{A2:pavucontrol &:} <bar-volume> %{A}
+sink = alsa_output.pci-0000_01_00.1.hdmi-stereo-extra4
+format-volume = %{A2:alacritty --title "pulsemixer_polybar" -e "pulsemixer" &:} <bar-volume> %{A}
 
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
-label-muted = %{A2:pavucontrol &:}%{F${colors.white}  sound muted %{F-} %{A}
+label-muted = %{A2:alacritty --title "pulsemixer_polybar" -e "pulsemixer" &:}%{F${colors.white}  sound muted %{F-} %{A}
 label-muted-foreground = ${colors.gray}
 
 bar-volume-width = 10
@@ -317,106 +191,6 @@ bar-volume-empty = 
 bar-volume-empty-font = 4
 bar-volume-empty-foreground = ${colors.gray}
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.green}
-format-charging-padding = 1
-
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${colors.red}
-format-discharging-padding = 1
-
-format-full = %{T5}  <label-full>
-format-full-underline = ${colors.green}
-format-full-overline = ${colors.green}
-format-full-padding = 1
-
-ramp-capacity-0 = %{T5}
-ramp-capacity-1 = %{T5}
-ramp-capacity-2 = %{T5}
-ramp-capacity-3 = %{T5}
-ramp-capacity-4 = %{T5}
-ramp-capacity-foreground = ${colors.white}
-
-animation-charging-0 = %{T5}
-animation-charging-1 = %{T5}
-animation-charging-2 = %{T5}
-animation-charging-3 = %{T5}
-animation-charging-4 = %{T5}
-animation-charging-foreground = ${colors.white}
-animation-charging-framerate = 1000
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 65
-
-format = <label>
-format-underline = ${colors.white}
-format-warn = <label-warn>
-format-warn-underline = ${colors.red}
-
-format-padding = 1
-format-warn-padidng = 1
-
-label =  %temperature%
-label-warn =  %temperature%
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #55
-
-[module/menu0]
-type = custom/menu
-
-format = <label-toggle> <menu>
-format-underline = ${colors.white}
-format-padding = 1
-
-menu-0-0 =  shutdown
-menu-0-0-exec = shutdown now
-menu-0-1 =  restart
-menu-0-1-exec = shutdown -r now
-menu-0-2 =   cancel
-
-label-open =   
-label-close =
-
-[module/updates]
-type = custom/script
-exec = echo 
-
-[module/powermenu]
-type = custom/menu
-
-label-open =  power
-label-open-foreground = #e60053
-label-close =  cancel
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
 [module/spotify]
 type = custom/script
 exec = ~/.config/polybar/music.sh
@@ -429,5 +203,5 @@ initial=1
 bar-width = 10
 
 format-underline = ${colors.blue}
-hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}  %{A}" &
-hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}  %{A}" &
+hook-0 = echo "%{A1:dunstctl set-paused true && polybar-msg hook dunst 2:}  %{A}" &
+hook-1 = echo "%{A1:dunstctl set-paused false && polybar-msg hook dunst 1:}  %{A}" &

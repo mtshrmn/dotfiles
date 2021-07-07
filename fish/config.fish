@@ -26,6 +26,7 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 source .profile
 
 alias vim "nvim"
+alias neomutt 'bicon "" neomutt'
 alias ls "lsd"
 alias cat "bat -p --paging=never"
 alias mv "mv -iv"
@@ -66,4 +67,18 @@ function x --description "General extractor"
   else
     echo "'$1' is not a valid file"
   end
+end
+
+# git wrapper for various commands
+function git --description "git wrapper"
+    if test "$argv[1]" = "show"
+        if string match -r "[a-f0-9]{7}\$" "$argv[2]" 
+            /usr/bin/git show $argv[2..-1] | bat -l diff
+        else
+            set ext (echo "$argv[2]" | tr "." "\n" | tail -1)
+            /usr/bin/git show $argv[2..-1] | bat -l "$ext"
+        end
+    else
+        /usr/bin/git $argv[1..-1]
+    end
 end

@@ -1,6 +1,7 @@
 use_nerdfont = true
 notify = true
 autoplay = true
+flip_status_indicators = true
 
 [saved_state]
 volume = 70

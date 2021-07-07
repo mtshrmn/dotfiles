@@ -10,6 +10,10 @@ if [ "$(playerctl status --player=ncspot 2> /dev/null)" = "Playing" ]; then
     artist=$(playerctl metadata artist --player=ncspot)
     title=$(playerctl metadata title --player=ncspot)
     echo "$artist - $title" | fribidi /dev/stdin
+elif [ "$(playerctl status --player=spotifyd 2> /dev/null)" = "Playing" ]; then
+    artist=$(playerctl metadata artist --player=spotifyd)
+    title=$(playerctl metadata title --player=spotifyd)
+    echo "$artist - $title" | fribidi /dev/stdin
 elif [ "$(playerctl status --player=spotify 2> /dev/null)" = "Playing" ]; then
     artist=$(playerctl metadata artist --player=spotify)
     title=$(playerctl metadata title --player=spotify)

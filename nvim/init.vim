@@ -103,7 +103,6 @@ inoremap <silent><expr> <Tab>
 autocmd BufEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 autocmd TermOpen * setlocal nonumber norelativenumber
-autocmd TermOpen * Limelight!
 
 
 augroup terminal_settings
@@ -125,6 +124,7 @@ let mapleader=" "
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>tt :NERDTreeFocus<CR>
+nmap <leader>i :Vista focus<CR>
 nnoremap <C-p> :Vista finder coc<CR>
 
 autocmd InsertEnter * let @/=""
