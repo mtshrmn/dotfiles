@@ -19,10 +19,14 @@ set SPACEFISH_USER_SHOW always
 set SPACEFISH_DIR_PERFIX ""
 set SPACEFISH_HOST_SHOW_FULL true
 
+set -x XDG_CONFIG_HOME "/home/suerflowz/.config/"
+
+set PATH /home/suerflowz/scripts/apps /home/suerflowz/.cargo/bin $PATH
 set -x VISUAL "nvim"
 set -x EDITOR "nvim"
 set -x TUIR_EDITOR "nvim"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MCFLY_KEY_SCHEME "vim"
 source .profile
 
 alias vim "nvim"
@@ -42,6 +46,29 @@ alias webcam "i3-swallow mpv --no-cache --untimed --no-demuxer-thread --video-sy
 
 function docs
      find documents/ -type f | fzf | xargs -r i3-swallow xdg-open 2> /dev/null
+end
+
+function conf
+    find /home/suerflowz/.config/ \( \
+    -path /home/suerflowz/.config/chromium -o \
+    -path /home/suerflowz/.config/pipewire-media-session -o \
+    -path /home/suerflowz/.config/pulse -o \
+    -path /home/suerflowz/.config/Notion -o \
+    -path /home/suerflowz/.config/obsidian -o \
+    -path /home/suerflowz/.config/yarn -o \
+    -path /home/suerflowz/.config/transmission-daemon -o \
+    -path /home/suerflowz/.config/coc -o \
+    -path /home/suerflowz/.config/.git -o \
+    -path /home/suerflowz/.config/google-chrome -o \
+    -path /home/suerflowz/.config/BetterDiscord -o \
+    -path /home/suerflowz/.config/SideQuest -o \
+    -path /home/suerflowz/.config/Postman -o \
+    -path /home/suerflowz/.config/Min -o \
+    -path /home/suerflowz/.config/spicetify -o \
+    -path /home/suerflowz/.config/discord -o \
+    -path /home/suerflowz/.config/balena-etcher-electron -o \
+    -path /home/suerflowz/.config/libreoffice \
+    \) -prune -false -o -type f | cut -d'/' -f5- | fzf --layout=reverse --history=/home/suerflowz/.cache/conf/fzf.history | awk '{print "/home/suerflowz/.config/"$1}' | xargs -r nvim
 end
 
 alias simplehttpserver "browser-sync start -s -f . --no-notify --host $LOCAL_IP --port 9000"
@@ -82,3 +109,6 @@ function git --description "git wrapper"
         /usr/bin/git $argv[1..-1]
     end
 end
+
+mcfly init fish | source
+set -gx MCFLY_FUZZY true

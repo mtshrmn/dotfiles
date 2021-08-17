@@ -60,6 +60,8 @@ for_window [title="pulsemixer_polybar"] floating enable
 for_window [title="pulsemixer_polybar"] sticky enable
 for_window [title="pulsemixer_polybar"] move position 2630 35
 for_window [title="pulsemixer_float"] floating enable
+for_window [title="nvim_float"] floating enable
+for_window [instance="^term_float"] floating enable
 
 # bindings ---------------------------------------------
 bindsym $mod+r mode "resize"
@@ -85,8 +87,8 @@ mode "resize" {
         bindsym Control+k resize shrink height 1 px 
         bindsym Control+l resize grow width 1 px 
 
-        bindsym $mod+r resize set width 927 px; mode "default"
-        bindsym $mod+Shift+r resize set width 2471 px; mode "default"
+        bindsym $mod+r resize set width 949 px; mode "default"
+        bindsym $mod+Shift+r resize set width 2491 px; mode "default"
         bindsym $mod+d resize set width 50 ppt; mode "default"
 
         # to change the split modes you must enter the resize mode first.
@@ -163,14 +165,14 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-bindsym $mod+t exec --no-startup-id ~/.config/i3/scripts/switch-languages.sh
+bindsym $mod+t exec --no-startup-id ~/scripts/i3/switch-languages.sh
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 #custom focus script
-bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/focus.py
+bindsym $mod+p exec --no-startup-id ~/scripts/i3/focus.py
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -190,7 +192,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # set lock screen shortcut
-bindsym $mod+Control+l exec --no-startup-id ./.config/i3/scripts/lock
+bindsym $mod+Control+l exec --no-startup-id ./scripts/i3/lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -198,7 +200,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id alacritty 
+bindsym $mod+Shift+Return exec --no-startup-id alacritty --class "term_float"
 #bindsym $mod+Return exec --no-startup-id st
 
 # kill focused window
@@ -217,6 +220,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 7%-"
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 7%+"
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 2%-"
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 2%+"
+# change output of sound
+bindsym $mod+Shift+o exec --no-startup-id "kill -USR1 $(pidof -x sound.sh)"
 
 #brightness controls:
 bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
@@ -226,7 +231,7 @@ bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
 
 # custon bindings
 bindsym --release Print exec --no-startup-id imgur-screenshot
-bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
+bindsym --release $mod+Shift+s exec --no-startup-id "./scripts/i3/snippet-tool"
 
 # latex binding (todo: find a nice place for it)
 bindsym $mod+Shift+U exec --no-startup-id "./scripts/system/unicodeit"
@@ -258,7 +263,7 @@ exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom
 exec_always --no-startup-id python ~/scripts/system/autotiling.py
 exec_always --no-startup-id systemctl --user start pbnotify
 exec_always --no-startup-id xscreensaver -no-splash
-exec_always --no-startup-id ./.config/i3/scripts/picom_startup
+exec_always --no-startup-id ./scripts/i3/picom_startup
 exec_always --no-startup-id systemctl --user start screen_deactivator
-exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
+exec_always --no-startup-id sh ~/scripts/i3/launch_polybar.sh
 exec_always --no-startup-id feh --bg-fill pictures/reddit_sub_WidescreenWallpaper/n7rx77-Shishkin_Ivan._Morning_in_a_pine_forest__1889____5160___2160-ppgpb4893xx61.png

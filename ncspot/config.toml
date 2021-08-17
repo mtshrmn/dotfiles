@@ -2,6 +2,7 @@ use_nerdfont = true
 notify = true
 autoplay = true
 flip_status_indicators = true
+highlight_fadeout = 10
 
 [saved_state]
 volume = 70

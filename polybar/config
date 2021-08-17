@@ -159,7 +159,7 @@ format-padding = 1
 
 [module/audio_output]
 type = custom/script
-exec = /home/suerflowz/.config/polybar/sound.sh
+exec = /home/suerflowz/scripts/polybar/sound.sh
 tail=true
 click-left= kill -USR1 %pid%
 
@@ -193,7 +193,7 @@ bar-volume-empty-foreground = ${colors.gray}
 
 [module/spotify]
 type = custom/script
-exec = ~/.config/polybar/music.sh
+exec = ~/scripts/polybar/music.sh
 tail = true
 interval = 1
 
