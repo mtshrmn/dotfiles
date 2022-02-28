@@ -1,5 +1,5 @@
 font:
-  ligatures: true
+  ligatures: false
   normal:
     family: mono
 
@@ -29,8 +29,5 @@ colors:
     magenta:    '#BC71CC'
     cyan:       '#57A9B3'
     white:      '#CFCED2'
-
-window:
-  opacity: 0.75
 
 background_opacity: 0.75

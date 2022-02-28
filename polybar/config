@@ -40,11 +40,11 @@ module-margin-right = 1
 module-margin-left = 0
 
 ; Modules to display on the bar
-modules-right = volume audio_output dunst 
+modules-right = volume audio_output mouse dunst 
 modules-center = date
 modules-left = i3 spotify
 
-background = #77090909
+background = #00090909
 foreground = ${colors.white}
 
 underline-size = 2
@@ -165,7 +165,7 @@ click-left= kill -USR1 %pid%
 
 [module/volume]
 type = internal/pulseaudio
-sink = alsa_output.pci-0000_01_00.1.hdmi-stereo-extra4
+sink = alsa_output.pci-0000_0b_00.1.hdmi-stereo
 format-volume = %{A2:alacritty --title "pulsemixer_polybar" -e "pulsemixer" &:} <bar-volume> %{A}
 
 label-volume = VOL
@@ -194,6 +194,13 @@ bar-volume-empty-foreground = ${colors.gray}
 [module/spotify]
 type = custom/script
 exec = ~/scripts/polybar/music.sh
+tail = true
+interval = 1
+
+[module/mouse]
+type = custom/script
+exec = ~/scripts/polybar/mouse_battery_percentage.sh
+label = | %output%
 tail = true
 interval = 1
 

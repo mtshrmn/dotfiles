@@ -20,6 +20,11 @@ set SPACEFISH_DIR_PERFIX ""
 set SPACEFISH_HOST_SHOW_FULL true
 
 set -x XDG_CONFIG_HOME "/home/suerflowz/.config/"
+set -x XDG_DOCUMENTS_DIR "/home/suerflowz/documents/"
+set -x XDG_DOWNLOAD_DIR "/home/suerflowz/downloads/"
+set -x XDG_MUSIC_DIR "/home/suerflowz/music/"
+set -x XDG_PICTURES_DIR "/home/suerflowz/pictures/"
+set -x XDG_VIDEOS_DIR "/home/suerflowz/videos/"
 
 set PATH /home/suerflowz/scripts/apps /home/suerflowz/.cargo/bin $PATH
 set -x VISUAL "nvim"
@@ -30,7 +35,7 @@ set -x MCFLY_KEY_SCHEME "vim"
 source .profile
 
 alias vim "nvim"
-alias neomutt 'bicon "" neomutt'
+alias i3-swallow "swallow"
 alias ls "lsd"
 alias cat "bat -p --paging=never"
 alias mv "mv -iv"
@@ -43,6 +48,7 @@ alias zathura "i3-swallow zathura"
 alias feh "i3-swallow feh"
 alias xclip "xclip -selection clipboard"
 alias webcam "i3-swallow mpv --no-cache --untimed --no-demuxer-thread --video-sync=audio --vd-lavc-threads=1 --vf=hflip /dev/video0"
+alias free_mem "sudo -- sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'"
 
 function docs
      find documents/ -type f | fzf | xargs -r i3-swallow xdg-open 2> /dev/null

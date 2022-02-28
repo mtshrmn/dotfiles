@@ -12,12 +12,9 @@ smart_borders on
 gaps inner 15
 gaps outer 525
 gaps vertical 30
-smart_gaps inverse_outer 
+smart_gaps inverse_outer
 for_window [class="^.*"] border pixel 0
 focus_follows_mouse no
-
-# each time opening a new window run this script to create an ultrawide split
-#for_window [class=".*"] exec --no-startup-id "echo 'hi' >> ~/test.txt"
 
 # use $mod to be a normie in floating mode.
 floating_modifier $mod
@@ -65,7 +62,7 @@ for_window [instance="^term_float"] floating enable
 
 # bindings ---------------------------------------------
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+t mode "transform"
+bindsym $mod+t mode "transform"
 bindsym $mod+g mode "gaps"
 
 mode "resize" {
@@ -80,12 +77,12 @@ mode "resize" {
         bindsym Shift+j resize grow height 5 px or 5 ppt
         bindsym Shift+k resize shrink height 5 px or 5 ppt
         bindsym Shift+l resize grow width 5 px or 5 ppt
-        
+
         # bind same as above but with control as half size
-        bindsym Control+h resize shrink width 1 px 
-        bindsym Control+j resize grow height 1 px 
-        bindsym Control+k resize shrink height 1 px 
-        bindsym Control+l resize grow width 1 px 
+        bindsym Control+h resize shrink width 1 px
+        bindsym Control+j resize grow height 1 px
+        bindsym Control+k resize shrink height 1 px
+        bindsym Control+l resize grow width 1 px
 
         bindsym $mod+r resize set width 949 px; mode "default"
         bindsym $mod+Shift+r resize set width 2491 px; mode "default"
@@ -96,7 +93,7 @@ mode "resize" {
         bindsym $mod+v split v; mode "default"
         bindsym $mod+s layout stacking; mode "default"
         bindsym $mod+w layout tabbed; mode "default"
-        
+
         # move focused window
         bindsym $mod+Shift+h move left
         bindsym $mod+Shift+j move down
@@ -111,32 +108,33 @@ mode "resize" {
 }
 
 # move workspace to different outputs (hjkl)
-# mode "transform" {
+mode "transform" {
 #    bindsym h move workspace to output left; mode "default"
 #    bindsym j move workspace to output down; mode "default"
 #    bindsym k move workspace to output up; mode "default"
 #    bindsym l move workspace to output right; mode "default"
 #    bindsym t exec --no-startup-id ~/scripts/switch-monitor.sh; mode "default"
-#    bindsym s sticky toggle; mode "default"
+   bindsym s sticky toggle; mode "default"
 #
-#    bindsym Return mode "default"
-#    bindsym Escape mode "default"
-# }
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+}
 
 # control the gaps
 mode "gaps" {
     # default gaps configuration
     bindsym $mod+d gaps outer current set 525; gaps vertical current set 30; mode "default"
     # set both outer gapps to 30
-    bindsym $mod+h gaps horizontal current set 30; mode "default" 
+    bindsym $mod+h gaps horizontal current set 30; mode "default"
     # remove outer gaps
     bindsym $mod+o gaps outer current set 0; mode "default"
     # slim mode - increase horizontal gaps.
     bindsym $mod+s gaps horizontal current set 800; mode "default"
-    
+    # super slim mode - book width
+    bindsym $mod+u gaps horizontal current set 1250; mode "default"
     # toggle default and no gaps
     bindsym $mod+g gaps horizontal current toggle 525; gaps vertical current toggle 30; mode "default"
-    
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -165,7 +163,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-bindsym $mod+t exec --no-startup-id ~/scripts/i3/switch-languages.sh
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -200,7 +197,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Return exec --no-startup-id alacritty 
+bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+Return exec --no-startup-id alacritty --class "term_float"
 #bindsym $mod+Return exec --no-startup-id st
 
@@ -254,7 +251,7 @@ client.urgent           $urgent-bg-color        $urgent-bg-color        $text-co
 # Daemons and such ----------------------------------------------------------------
 exec --no-startup-id dunst
 #exec --no-startup-id deadd-notification-center
-exec --no-startup-id unclutter 
+exec --no-startup-id unclutter
 exec --no-startup-id udiskie
 exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
@@ -266,4 +263,4 @@ exec_always --no-startup-id xscreensaver -no-splash
 exec_always --no-startup-id ./scripts/i3/picom_startup
 exec_always --no-startup-id systemctl --user start screen_deactivator
 exec_always --no-startup-id sh ~/scripts/i3/launch_polybar.sh
-exec_always --no-startup-id feh --bg-fill pictures/reddit_sub_WidescreenWallpaper/n7rx77-Shishkin_Ivan._Morning_in_a_pine_forest__1889____5160___2160-ppgpb4893xx61.png
+exec_always --no-startup-id feh --bg-fill /home/suerflowz/pictures/wallpapers/eytan-zana-demo-4.png

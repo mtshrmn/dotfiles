@@ -1,6 +1,6 @@
 # vim:ft=cfg
 [global]
-    #font = Monospace 8
+    font = mono 12
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -10,7 +10,6 @@
     #
     # for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
     # If markup is not allowed, those tags will be stripped out of the message.
-    allow_markup = yes
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -64,7 +63,8 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "500x20-10+30"
+    # geometry = "500x20-10+30"
+    width = 500
 
     # Shrink window if it's smaller than the width. Will be ignored if width is 0.
     shrink = no
@@ -132,30 +132,10 @@
     dmenu = /usr/bin/rofi -dmenu -p dunst:
 
     # browser for opening urls in context menu
-    browser = /usr/bin/chromium
+    browser = /usr/bin/qutebrowser
 
-[frame]
-    width = 0
-    color = "#aaaaaa00"
+    frame_width = 0
 
-[shortcuts]
-    # shortcuts are specified as [modifier+][modifier+]...key
-    # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
-    # and 'mod4' (windows-key)
-    # xev might be helpful to find names for keys
-
-    # close notification
-    #close = ctrl+space
-
-    # close all notifications
-    #close_all = ctrl+shift+space
-
-    # redisplay last message(s)
-    # On the US keyboard layout 'grave' is normally above TAB and left of '1'.
-    history = mod4+`
-
-    # context menu
-    context = mod4+shift+plus
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.

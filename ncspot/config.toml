@@ -3,6 +3,7 @@ notify = true
 autoplay = true
 flip_status_indicators = true
 highlight_fadeout = 10
+gapples = true
 
 [saved_state]
 volume = 70
@@ -19,7 +20,7 @@ highlight_bg = "#484848"
 error = "light white"
 error_bg = "red"
 statusbar_progress = "green"
-statusbar_bg = "green"
+statusbar = "white"
 cmdline = "green"
 
 [keybindings]
@@ -31,5 +32,5 @@ cmdline = "green"
 "1" = "focus queue"
 "2" = "focus search"
 "3" = "focus library"
-"Shift+j" = "move bottom"
-"Shift+k" = "move top"
+"Shift+g" = "move bottom"
+"g" = "move top"
