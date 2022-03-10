@@ -26,13 +26,13 @@ set -x XDG_MUSIC_DIR "/home/suerflowz/music/"
 set -x XDG_PICTURES_DIR "/home/suerflowz/pictures/"
 set -x XDG_VIDEOS_DIR "/home/suerflowz/videos/"
 
-set PATH /home/suerflowz/scripts/apps /home/suerflowz/.cargo/bin $PATH
+set PATH /home/suerflowz/scripts/apps /home/suerflowz/.cargo/bin /home/suerflowz/.local/bin $PATH
 set -x VISUAL "nvim"
 set -x EDITOR "nvim"
 set -x TUIR_EDITOR "nvim"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x MCFLY_KEY_SCHEME "vim"
-source .profile
+source ~/.profile
 
 alias vim "nvim"
 alias i3-swallow "swallow"
