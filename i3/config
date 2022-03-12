@@ -1,0 +1,245 @@
+#  _ _____
+# (_)___ /_      ___ __ ___
+# | | |_ \ \ /\ / / '_ ` _ \
+# | |___) \ V  V /| | | | | |
+# |_|____/ \_/\_/ |_| |_| |_|
+# suerflowz minimal i3wm rice
+
+
+set $mod Mod4
+font pango:San Francisco Display 11
+smart_borders on
+gaps inner 15
+gaps horizontal 5
+smart_gaps inverse_outer
+for_window [class="^.*"] border pixel 0
+focus_follows_mouse no
+
+# use $mod to be a normie in floating mode.
+floating_modifier $mod
+
+# workspace matching
+assign [class="Chromium"] 1
+# unless i do this, atom will be sent to workspace 2 in a parallel universe
+for_window [class="Atom"] move to workspace 2
+for_window [class="Spotify"] move to workspace 3
+for_window [title="^ncspot$" class="Alacritty"] move to workspace 3
+assign [class="discord"] 5
+assign [class="zoom"] 5
+assign [class="deluge"] 6
+assign [class="vlc"] 6
+assign [instance="mpv-anime"] 6
+assign [class="Steam"] 7
+assign [class="battle.net.exe"] 7
+assign [class="overwatch.exe"] 7
+
+# floating windows
+for_window [class="xmessage"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [class="float"] floating enable
+for_window [instance="mpv-rtv"] floating enable
+for_window [class="imv"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^(?!Steam).*$"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+for_window [title="Friends List"] floating enable
+for_window [title="Among Us"] floating disable
+# pavucontrol sticky on top right of screen.
+for_window [title="pulsemixer_polybar"] floating enable
+for_window [title="pulsemixer_polybar"] sticky enable
+for_window [title="pulsemixer_polybar"] move position 2630 35
+for_window [title="pulsemixer_float"] floating enable
+for_window [title="nvim_float"] floating enable
+for_window [instance="^term_float"] floating enable
+
+# bindings ---------------------------------------------
+bindsym $mod+r mode "resize"
+bindsym $mod+t mode "transform"
+
+mode "resize" {
+        # grow/shrink window by 10 px or ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # bind same as above but with control as half size
+        bindsym Shift+h resize shrink width 5 px or 5 ppt
+        bindsym Shift+j resize grow height 5 px or 5 ppt
+        bindsym Shift+k resize shrink height 5 px or 5 ppt
+        bindsym Shift+l resize grow width 5 px or 5 ppt
+
+        # bind same as above but with control as half size
+        bindsym Control+h resize shrink width 1 px
+        bindsym Control+j resize grow height 1 px
+        bindsym Control+k resize shrink height 1 px
+        bindsym Control+l resize grow width 1 px
+
+        bindsym $mod+r resize set width 949 px; mode "default"
+        bindsym $mod+Shift+r resize set width 2491 px; mode "default"
+        bindsym $mod+d resize set width 50 ppt; mode "default"
+
+        # to change the split modes you must enter the resize mode first.
+        bindsym $mod+h split h; mode "default"
+        bindsym $mod+v split v; mode "default"
+        bindsym $mod+s layout stacking; mode "default"
+        bindsym $mod+w layout tabbed; mode "default"
+
+        # move focused window
+        bindsym $mod+Shift+h move left
+        bindsym $mod+Shift+j move down
+        bindsym $mod+Shift+k move up
+        bindsym $mod+Shift+l move right
+
+        bindsym $mod+e layout toggle split; mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# move workspace to different outputs (hjkl)
+mode "transform" {
+#    bindsym h move workspace to output left; mode "default"
+#    bindsym j move workspace to output down; mode "default"
+#    bindsym k move workspace to output up; mode "default"
+#    bindsym l move workspace to output right; mode "default"
+#    bindsym t exec --no-startup-id ~/scripts/switch-monitor.sh; mode "default"
+   bindsym s sticky toggle; mode "default"
+#
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+}
+
+# 10 simple workspaces corresponding to the numbers
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+#custom focus script
+bindsym $mod+p exec --no-startup-id ~/scripts/i3/focus.py
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent-child container
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+# set lock screen shortcut
+bindsym $mod+Control+l exec --no-startup-id ./scripts/i3/lock
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Shift+Return exec --no-startup-id alacritty --class "term_float"
+#bindsym $mod+Return exec --no-startup-id st
+
+# kill focused window
+bindsym $mod+Shift+q kill
+bindsym --release $mod+Control+Shift+q exec --no-startup-id xkill
+
+bindsym $mod+d exec --no-startup-id "rofi -show run -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
+# media controls:
+bindsym XF86AudioNext exec --no-startup-id "playerctl --player=ncspot,spotify next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=ncspot,spotify previous"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=ncspot,spotify play-pause"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 7%-"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 7%+"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id "amixer sset Master 2%-"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id "amixer sset Master 2%+"
+# change output of sound
+bindsym $mod+Shift+o exec --no-startup-id "kill -USR1 $(pidof -x sound.sh)"
+
+#brightness controls:
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id "light -U 1"
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
+
+# custon bindings
+bindsym --release Print exec --no-startup-id imgur-screenshot
+bindsym --release $mod+Shift+s exec --no-startup-id "./scripts/i3/snippet-tool"
+
+# latex binding (todo: find a nice place for it)
+bindsym $mod+Shift+U exec --no-startup-id "./scripts/system/unicodeit"
+
+
+# Colors --------------------------------------------------------------
+
+set $bg-color 	          #282828
+set $inactive-bg-color   #202020
+set $text-color          #d6d6d6
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+set $border-focus	       #666666
+
+client.focused          $border-focus           $border-focus           $text-color             $bg-color
+client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $bg-color
+client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    $bg-color
+client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             $bg-color
+
+# Daemons and such ----------------------------------------------------------------
+exec --no-startup-id dunst
+#exec --no-startup-id deadd-notification-center
+exec --no-startup-id unclutter
+exec --no-startup-id udiskie
+exec --no-startup-id ~/.config/i3/startup
+#exec --no-startup-id spotpris2 -> fuck u spotify
+
+exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
+exec_always --no-startup-id python ~/scripts/system/autotiling.py
+exec_always --no-startup-id systemctl --user start pbnotify
+exec_always --no-startup-id xscreensaver -no-splash
+exec_always --no-startup-id ./scripts/i3/picom_startup
+exec_always --no-startup-id systemctl --user start screen_deactivator
+exec_always --no-startup-id sh ~/scripts/i3/launch_polybar.sh
+exec_always --no-startup-id feh --bg-fill /home/suerflowz/pictures/wallpapers/eytan-zana-demo-4.jpg

@@ -1,0 +1,1 @@
+bin|bicon_ncspot|file

@@ -1,0 +1,36 @@
+font:
+  ligatures: true
+  normal:
+    family: mono
+
+  size: 9
+
+colors:
+  primary:
+    background: '#070706'
+    foreground: '#D3D7CF'
+    
+  normal:
+    black:      '#2B2C33'
+    red:        '#D3666E'
+    green:      '#92B572'
+    yellow:     '#D7B273'
+    blue:       '#61A3DC'
+    magenta:    '#BC71CC'
+    cyan:       '#57A9B3'
+    white:      '#CFCED2'
+
+  bright:
+    black:      '#2B2C33'
+    red:        '#D3666E'
+    green:      '#92B572'
+    yellow:     '#D7B273'
+    blue:       '#61A3DC'
+    magenta:    '#BC71CC'
+    cyan:       '#57A9B3'
+    white:      '#CFCED2'
+
+window:
+  opacity: 0.75
+
+background_opacity: 0.75

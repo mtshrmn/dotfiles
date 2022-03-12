@@ -1,0 +1,36 @@
+use_nerdfont = true
+notify = true
+autoplay = true
+flip_status_indicators = true
+highlight_fadeout = 10
+gapples = true
+
+[saved_state]
+volume = 70
+repeat = "playlist"
+
+[theme]
+primary = "light white"
+secondary = "#DCDCDC"
+title = "green"
+playing = "green"
+playing_selected = "light green"
+highlight = "light white"
+highlight_bg = "#484848"
+error = "light white"
+error_bg = "red"
+statusbar_progress = "green"
+statusbar = "white"
+cmdline = "green"
+
+[keybindings]
+"Shift+l" = "next"
+"Shift+h" = "previous"
+"Shift+r" = "reload"
+"=" = "volup 1"
+"+" = "volup 1" 
+"1" = "focus queue"
+"2" = "focus search"
+"3" = "focus library"
+"Shift+g" = "move bottom"
+"g" = "move top"
