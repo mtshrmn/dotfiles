@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.notifications.enabled:
-    https://www.banggood.com: true
+  content.javascript.can_access_clipboard:
+    global: true
