@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "coc-marketplace": ">=1.9.0",
+    "coc-pyright": ">=1.1.228",
     "coc-rust-analyzer": ">=0.60.1"
   }
 }
