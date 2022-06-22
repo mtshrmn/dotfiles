@@ -32,6 +32,7 @@ set -x EDITOR "nvim"
 set -x TUIR_EDITOR "nvim"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x MCFLY_KEY_SCHEME "vim"
+set -x gcc_technion "gcc -Wall -Wextra -Werror -pedantic -anso -W -O -g -std=c99 -c"
 source ~/.profile
 
 alias vim "nvim"

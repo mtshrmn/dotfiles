@@ -169,7 +169,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 #custom focus script
-bindsym $mod+p exec --no-startup-id ~/scripts/i3/focus.py
+# bindsym $mod+p exec --no-startup-id ~/scripts/i3/focus.py
 
 # move focused window
 bindsym $mod+Shift+h move left

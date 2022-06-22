@@ -26,9 +26,12 @@
 !/polybar/
 !/polybar/*
 !/polybar/**/*
-!/nvim/
-!/nvim/*
-!/nvim/**/*
+!/astronvim/
+!/astronvim/*
+!/astronvim/**/*
 !/scripts/
 !/scripts/*
 !/scripts/**/*
+!/qutebrowser/
+!/qutebrowser/*
+!/qutebrowser/**/*
