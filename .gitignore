@@ -35,3 +35,6 @@
 !/qutebrowser/
 !/qutebrowser/*
 !/qutebrowser/**/*
+!/ranger/
+!/ranger/*
+!/ranger/**/*
