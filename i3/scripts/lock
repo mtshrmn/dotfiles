@@ -1,0 +1,58 @@
+#!/bin/sh
+# custom lockscreen, yet to be named
+playerctl pause --all-players
+set -o errexit -o noclobber -o nounset
+
+effect=(-filter Gaussian -resize 20% -define "filter:sigma=2.5" -resize 500.5%)
+# get the default system sans-serif font
+font="SF Pro Display"
+image=$(mktemp --suffix=.png)
+shot=(import -window root)
+desktop=""
+lock_cmd=(i3lock -i "$image")
+
+# move pipefail down as for some reason "convert -list font" returns 1
+set -o pipefail
+trap 'rm -f "$image"' EXIT
+
+command -- "${shot[@]}" "$image"
+
+insidecolor=00000000
+ringcolor=ffffffff
+keyhlcolor=d23c3dff
+bshlcolor=d23c3dff
+separatorcolor=00000000
+insidevercolor=00000000
+insidewrongcolor=d23c3dff
+ringvercolor=ffffffff
+ringwrongcolor=ffffffff
+verifcolor=ffffffff
+timecolor=ffffffff
+datecolor=ffffffff
+loginbox=00000066
+locktext='Type password to unlock...'
+
+# draw the rectancgles, accomodate for multi-monitor setup
+screen_resolutions=$(xrandr --query | grep ' connected' | grep -o '[0-9][0-9]*x[0-9][0-9]*[^ ]*')
+rectangles=" "
+for resolution in $screen_resolutions; do
+    sra=(${resolution//[x+]/ })
+    cx=$((sra[2] + 25))
+    cy=$((sra[1] - 150))
+    # add the rectangles to our imagemagic string
+    rectangles+="rectangle $cx,$cy $((cx + 450)),$((cy + 120)) "
+done
+
+convert "$image" "${effect[@]}" -gravity Southwest -draw "fill #$loginbox $rectangles" "$image"
+
+"${lock_cmd[@]}" --time-pos='x+100:h-90' \
+        --date-pos='x+50:h-55' --date-size="20" --time-size="42" \
+        --clock --time-str="%H:%M" --date-align 1 --date-str "$locktext" \
+        --inside-color=$insidecolor --ring-color=$ringcolor --line-uses-inside \
+        --keyhl-color=$keyhlcolor --bshl-color=$bshlcolor --separator-color=$separatorcolor \
+        --insidever-color=$insidevercolor --insidewrong-color=$insidewrongcolor \
+        --ringver-color=$ringvercolor --ringwrong-color=$ringwrongcolor --ind-pos='x+410:h-90' \
+        --radius=30 --ring-width=6 --verif-text='' --wrong-text='' \
+        --verif-color="$verifcolor" --time-color="$timecolor" --date-color="$datecolor" \
+        --time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
+        --noinput-text='' --force-clock --pass-media-keys

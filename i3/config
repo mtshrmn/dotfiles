@@ -189,7 +189,7 @@ bindsym $mod+a focus parent
 bindsym $mod+z focus child
 
 # set lock screen shortcut
-bindsym $mod+Control+l exec --no-startup-id ./scripts/i3/lock
+bindsym $mod+Control+l exec --no-startup-id ./.config/i3/scripts/lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -228,10 +228,10 @@ bindsym Shift+XF86MonBrightnessUp exec --no-startup-id "light -A 1"
 
 # custon bindings
 bindsym --release Print exec --no-startup-id imgur-screenshot
-bindsym --release $mod+Shift+s exec --no-startup-id "./scripts/i3/snippet-tool"
+bindsym --release $mod+Shift+s exec --no-startup-id "./.config/i3/scripts/snippet-tool"
 
 # latex binding (todo: find a nice place for it)
-bindsym $mod+Shift+U exec --no-startup-id "./scripts/system/unicodeit"
+# bindsym $mod+Shift+U exec --no-startup-id "./scripts/system/unicodeit"
 
 
 # Colors --------------------------------------------------------------
@@ -256,11 +256,10 @@ exec --no-startup-id udiskie
 exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 
-exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
-exec_always --no-startup-id python ~/scripts/system/autotiling.py
+exec_always --no-startup-id python ~/.config/i3/scripts/autotiling.py
 exec_always --no-startup-id systemctl --user start pbnotify
 exec_always --no-startup-id xscreensaver -no-splash
-exec_always --no-startup-id ./scripts/i3/picom_startup
+exec_always --no-startup-id ./.config/i3/scripts/picom_startup
 exec_always --no-startup-id systemctl --user start screen_deactivator
-exec_always --no-startup-id sh ~/scripts/i3/launch_polybar.sh
+exec_always --no-startup-id sh ~/.config/i3/scripts/launch_polybar.sh
 exec_always --no-startup-id feh --bg-fill /home/suerflowz/pictures/wallpapers/eytan-zana-demo-4.png

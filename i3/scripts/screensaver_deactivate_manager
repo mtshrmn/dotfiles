@@ -1,0 +1,35 @@
+#!/bin/bash
+while true; do
+    sinks=$(pacmd list-sink-inputs | grep "application.name = " | grep -vE "librespot|spotify|WEBRTC VoiceEngine")
+    if [[ -n "$sinks" ]]; then
+        if [ "$(echo "$sinks" | wc -l)" -eq 1 ]; then
+            if [[ "$(playerctl --player=vlc,mpv status 2>/dev/null)" != "Paused" ]]; then
+                xscreensaver-command -deactivate
+            fi
+        else
+            xscreensaver-command -deactivate
+        fi
+    fi
+
+    sound_output=$(pactl info | grep -Pc '^(?=.*Default Sink)(?=.*game)')
+    # monitor = 0
+    if [ "$sound_output" -eq 0 ]; then
+        sinks=$(pacmd list-sink-inputs | grep "application.name = ")
+        if [[ -n "$sinks" ]]; then
+          if [ "$(echo "$sinks" | wc -l)" -eq 1 ]; then
+              if [[ "$(playerctl --player=vlc,mpv status 2>/dev/null)" != "Paused" ]]; then
+                  xscreensaver-command -deactivate
+              fi
+          else
+              xscreensaver-command -deactivate
+          fi
+        fi
+    fi
+
+    # keep screen active indefinitely
+    # xscreensaver-command -deactivate
+
+    sleep 10
+done
+
+

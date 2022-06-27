@@ -159,7 +159,7 @@ format-padding = 1
 
 [module/audio_output]
 type = custom/script
-exec = /home/suerflowz/scripts/polybar/sound.sh
+exec = ~/.config/polybar/scripts/sound.sh
 tail=true
 click-left= kill -USR1 %pid%
 
@@ -193,13 +193,13 @@ bar-volume-empty-foreground = ${colors.gray}
 
 [module/spotify]
 type = custom/script
-exec = ~/scripts/polybar/music.sh
+exec = ~/.config/polybar/scripts/music.sh
 tail = true
 interval = 1
 
 [module/mouse]
 type = custom/script
-exec = ~/scripts/polybar/mouse_battery_percentage.sh
+exec = ~/.config/polybar/scripts/mouse_battery_percentage.sh
 label = | %output%
 tail = true
 interval = 1

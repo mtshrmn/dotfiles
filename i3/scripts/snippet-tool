@@ -1,0 +1,16 @@
+#!/bin/sh
+DIR="/home/suerflowz/pictures/screenshots"
+TMPDIR=$(mktemp -d)
+maim -s -u -B > $TMPDIR/tmp.png
+if [ $? == 0 ]; then
+    xclip -selection clipboard -t image/png -i $TMPDIR/tmp.png
+    FILENAME=$(date +"local-%Y_%m_%d-%H:%M:%S.png")
+    action=$(dunstify -i $TMPDIR/tmp.png "$FILENAME" "screenshot captured succesfully" --action="display,display")
+    mv $TMPDIR/tmp.png $DIR/$FILENAME
+
+    if [[ "$action" == "display" ]]; then
+        feh --class "float" $DIR/$FILENAME
+    fi
+else 
+    rm -r $TMPDIR
+fi
