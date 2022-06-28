@@ -21,5 +21,5 @@ while true; do
     else
         export PA_OUTPUT="headphones"
     fi
-    python ~/scripts/polybar/sound.py
+    python ~/.config/polybar/scripts/sound.py
 done

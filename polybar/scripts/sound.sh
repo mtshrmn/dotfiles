@@ -16,7 +16,7 @@ toggle() {
     sink=$(pactl list short sinks | grep "$output" | awk '{print $1;}')
     pactl set-default-sink "$sink"
     # move sink inputs to their respective sinks
-    python ~/scripts/polybar/sound.py
+    python ~/.config/polybar/scripts/sound.py
     sh ~/.config/polybar/scripts/sound_fixer.sh 1>/dev/null 2>/dev/null &
 }
 
