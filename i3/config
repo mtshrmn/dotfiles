@@ -256,6 +256,7 @@ exec --no-startup-id udiskie
 exec --no-startup-id ~/.config/i3/startup
 #exec --no-startup-id spotpris2 -> fuck u spotify
 
+exec_always --no-startup-id picom --experimental-backend --backend glx 2> .picom.err &
 exec_always --no-startup-id python ~/.config/i3/scripts/autotiling.py
 exec_always --no-startup-id systemctl --user start pbnotify
 exec_always --no-startup-id xscreensaver -no-splash

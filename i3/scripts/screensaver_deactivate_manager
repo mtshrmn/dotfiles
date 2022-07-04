@@ -4,10 +4,12 @@ while true; do
     if [[ -n "$sinks" ]]; then
         if [ "$(echo "$sinks" | wc -l)" -eq 1 ]; then
             if [[ "$(playerctl --player=vlc,mpv status 2>/dev/null)" != "Paused" ]]; then
-                xscreensaver-command -deactivate
+                echo "RESETTING: mpv/vlc is not paused"
+                xset s reset
             fi
         else
-            xscreensaver-command -deactivate
+            echo "RESETTING: something other than mpv/vlc is producing a sound"
+            xset s reset
         fi
     fi
 
@@ -18,16 +20,18 @@ while true; do
         if [[ -n "$sinks" ]]; then
           if [ "$(echo "$sinks" | wc -l)" -eq 1 ]; then
               if [[ "$(playerctl --player=vlc,mpv status 2>/dev/null)" != "Paused" ]]; then
-                  xscreensaver-command -deactivate
+                  echo "RESETTING: monitor output - mpv/vlc is not paused"
+                  xset s reset
               fi
           else
-              xscreensaver-command -deactivate
+              echo "RESETTING: monitor output - something other than mpv/vlc is producing a sound"
+              xset s reset
           fi
         fi
     fi
 
     # keep screen active indefinitely
-    # xscreensaver-command -deactivate
+    # xset s reset
 
     sleep 10
 done

@@ -4,4 +4,4 @@ if ! pgrep -x picom >/dev/null; then
     exit
 fi
 
-picom --experimenta-backend --backend glx 2> .picom.err
+picom --experimental-backend --backend glx 2> .picom.err &
