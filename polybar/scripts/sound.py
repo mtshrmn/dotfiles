@@ -10,7 +10,7 @@ game = [
 "FactoryGame-Win64-Shipping.exe;Audio Stream",
 "FactoryGame-Win64-Shipping.exe;audio stream #1",
 "Borderlands2;Simple DirectMedia Layer",
-"Overwatch.exe;audio stream #1",
+"Overwatch;audio stream #1",
 "We Were Here.exe;audio stream #1",
 "FMOD Ex App;Mixer Stream",
 # "ZOOM VoiceEngine;playStream", <-- uncomment when zoom fixes their shitty app

@@ -36,6 +36,7 @@ set -x gcc_technion "gcc -Wall -Wextra -Werror -pedantic -anso -W -O -g -std=c99
 source ~/.profile
 
 alias vim "nvim"
+alias mayan "cowsay -f milk i love mayan"
 alias i3-swallow "swallow"
 alias ls "lsd"
 alias cat "bat -p --paging=never"
